@@ -43,8 +43,8 @@ axiosContainer.createRequest('b_id', { type: 'b' })
 |--------------------------------------------------------------------------
 |
 | {
-|   "1": "Response for 'a_id'",
-|   "2": "Response for 'b_id'",
+|   "a_id": "Response for 'a_id'",
+|   "b_id": "Response for 'b_id'",
 | }
 |
 */
