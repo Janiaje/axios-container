@@ -30,6 +30,8 @@ class AxiosContainer {
     }
 
     /**
+     * Create a new request in the container.
+     *
      * @param requestId int|string
      * @param requestParameters Object
      * @returns {Promise<any>}
@@ -59,6 +61,14 @@ class AxiosContainer {
     }
 
     /**
+     * Send the request now.
+     * (Do not wait for the debounce.)
+     */
+    sendNow() {
+        this._axiosCallback();
+    }
+
+    /**
      * @param requestId int|string
      * @param requestParameters Object
      * @private
@@ -74,6 +84,10 @@ class AxiosContainer {
      * @private
      */
     _createAxiosInterval() {
+        if (this._intervalTime === false) {
+            return;
+        }
+
         this._axiosInterval = setInterval(() => {
             this._axiosCallback()
         }, this._intervalTime);
@@ -112,9 +126,9 @@ class AxiosContainer {
      * @private
      */
     _axiosCallback() {
-        this._runAxiosCall();
-
         this._clearAxiosInterval();
+
+        this._runAxiosCall();
     }
 
     /**

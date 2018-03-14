@@ -48,6 +48,19 @@ axiosContainer.createRequest('b_id', { type: 'b' })
 | }
 |
 */
+
+/*
+|--------------------------------------------------------------------------
+| `sendNow()`
+|--------------------------------------------------------------------------
+|
+| You can call the `sendNow()` method on the container,
+| if you would like to send the request instantly
+| (not waiting for the intervalTime) 
+|
+*/
+axiosContainer.sendNow();
+
 ```
 
 ### Additional config
@@ -72,7 +85,10 @@ let axiosContainer = new AxiosContainer('/some/url', {
     |--------------------------------------------------------------------------
     |
     | This time to be waited after the last `createRequest` call
-    | before sending the axios request
+    | before sending the axios request.
+    |
+    | If set to `false`, the request will be sent only if
+    | the `sendNow()` method is called.
     |
     */
     intervalTime: 5000,
