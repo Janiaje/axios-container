@@ -2,9 +2,9 @@ class AxiosContainer {
 
     /**
      * @param url String
-     * @param settings Object
+     * @param config Object
      */
-    constructor(url, settings = {}) {
+    constructor(url, config = {}) {
 
         this._url = url;
 
@@ -12,14 +12,14 @@ class AxiosContainer {
             method = 'GET',
             intervalTime = 5000,
             data = {},
-            config = {},
+            axiosConfig = {},
             noCache = false
-        } = settings;
+        } = config;
 
         this._method = method;
         this._intervalTime = intervalTime;
         this._data = data;
-        this._config = config;
+        this._config = axiosConfig;
         this._noCache = noCache;
 
         this._callbackContainer = [];
@@ -50,6 +50,8 @@ class AxiosContainer {
                 if (this._isDataAcquired(requestId)) {
                     clearInterval(interval);
                     resolve(this._getAcquiredData(requestId));
+                } else {
+                    reject('Axios call was successful, but did not contain any response for this call!')
                 }
             };
 
@@ -129,7 +131,7 @@ class AxiosContainer {
         let request;
         switch (this._method.toUpperCase()) {
             case 'GET': {
-                let config = Object.assign({ params: data }, this._config);
+                let config = Object.assign({params: data}, this._config);
 
                 request = axios.get(
                     this._url,
@@ -138,7 +140,7 @@ class AxiosContainer {
                 break;
             }
             case 'DELETE': {
-                let config = Object.assign({ params: data }, this._config);
+                let config = Object.assign({params: data}, this._config);
 
                 request = axios.delete(
                     this._url,
@@ -147,7 +149,7 @@ class AxiosContainer {
                 break;
             }
             case 'HEAD': {
-                let config = Object.assign({ params: data }, this._config);
+                let config = Object.assign({params: data}, this._config);
 
                 request = axios.head(
                     this._url,
@@ -156,7 +158,7 @@ class AxiosContainer {
                 break;
             }
             case 'OPTIONS': {
-                let config = Object.assign({ params: data }, this._config);
+                let config = Object.assign({params: data}, this._config);
 
                 request = axios.options(
                     this._url,
