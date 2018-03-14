@@ -1,6 +1,6 @@
 {
   "name": "axios-container",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "A container to bundle multiple axios call together",
   "main": "index.js",
   "scripts": {
@@ -17,5 +17,9 @@
   "license": "MIT",
   "dependencies": {
     "axios": "^0.16.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Janiaje/axios-container"
   }
 }
