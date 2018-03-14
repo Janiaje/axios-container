@@ -27,7 +27,7 @@ axiosContainer.createRequest('a_id', { type: 'a', someAdditionalParameter: 'valu
     });
 
 // Create another request through the AxiosContainer
-axiosContainer.createRequest('a_id', { type: 'b' })
+axiosContainer.createRequest('b_id', { type: 'b' })
     .then(function (response) {
         console.log(response);
     })
@@ -36,6 +36,18 @@ axiosContainer.createRequest('a_id', { type: 'b' })
     });
 
 // Both request will be bundled together into a single request.
+
+/*
+|--------------------------------------------------------------------------
+| Response should be the following for the request above
+|--------------------------------------------------------------------------
+|
+| {
+|   "1": "Response for 'a_id'",
+|   "2": "Response for 'b_id'",
+| }
+|
+*/
 ```
 
 ### Additional config
