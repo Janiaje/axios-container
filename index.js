@@ -44,14 +44,13 @@ class AxiosContainer {
 
             let callback = () => {
                 if (this._axiosError !== null) {
-                    throw new Error(this._axiosError);
+                    reject(this._axiosError);
                 }
 
                 if (this._isDataAcquired(requestId)) {
-                    clearInterval(interval);
                     resolve(this._getAcquiredData(requestId));
                 } else {
-                    reject('Axios call was successful, but did not contain any response for this call!')
+                    reject('Axios call was successful, but did not contain any response for this call!');
                 }
             };
 
@@ -186,13 +185,14 @@ class AxiosContainer {
         request.then((response) => {
             this._responseContainer = Object.assign(this._responseContainer, response.data);
             this._requestContainer = {};
-
+        }).catch((error) => {
+            this._axiosError = error;
+        }).then(() => {
             this._callbackContainer.forEach((callback) => {
                 callback();
             });
+
             this._callbackContainer = [];
-        }).catch((error) => {
-            this._axiosError = error;
         });
     }
 }
