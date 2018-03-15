@@ -18,22 +18,26 @@ window.AxiosContainer = AxiosContainer;
 let axiosContainer = new AxiosContainer('/some/url');
 
 // Create a request through the AxiosContainer
-axiosContainer.createRequest('a_id', { type: 'a', someAdditionalParameter: 'value' })
-    .then(function (response) {
-        console.log(response);
-    })
-    .catch(function(error) {
-        console.log(error);
-    });
+axiosContainer.createRequest('a_id', {
+    parameter_1: 1,
+    parameter_2: 2,
+    // ...
+}).then(function (response) {
+    console.log(response);
+}).catch(function (error) {
+    console.log(error);
+});
 
 // Create another request through the AxiosContainer
-axiosContainer.createRequest('b_id', { type: 'b' })
-    .then(function (response) {
-        console.log(response);
-    })
-    .catch(function(error) {
-        console.log(error);
-    });
+axiosContainer.createRequest('b_id', {
+    parameter_1: 1,
+    parameter_2: 2,
+    // ...
+}).then(function (response) {
+    console.log(response);
+}).catch(function (error) {
+    console.log(error);
+});
 
 // Both request will be bundled together into a single request.
 
