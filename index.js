@@ -44,17 +44,7 @@ class AxiosContainer {
 
             this._recordRequest(requestId, requestParameters);
 
-            let callback = () => {
-                if (this._axiosError !== null) {
-                    reject(this._axiosError);
-                }
-
-                if (this._isDataAcquired(requestId)) {
-                    resolve(this._getAcquiredData(requestId));
-                } else {
-                    reject('Axios call was successful, but did not contain any response for this call!');
-                }
-            };
+            let callback = this._createPromiseCallback(resolve, reject, requestId);
 
             this._callbackContainer.push(callback);
         });
@@ -78,6 +68,27 @@ class AxiosContainer {
         this._createAxiosInterval();
 
         this._requestContainer[requestId] = requestParameters;
+    }
+
+    /**
+     * @param resolve
+     * @param reject
+     * @param requestId int|string
+     * @returns {function()}
+     * @private
+     */
+    _createPromiseCallback(resolve, reject, requestId) {
+        return () => {
+            if (this._axiosError !== null) {
+                reject(this._axiosError);
+            }
+
+            if (this._isDataAcquired(requestId)) {
+                resolve(this._getAcquiredData(requestId));
+            } else {
+                reject('Axios call was successful, but did not contain any response for this call!');
+            }
+        };
     }
 
     /**
