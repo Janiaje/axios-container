@@ -5,7 +5,6 @@ class AxiosContainer {
      * @param config Object
      */
     constructor(url, config = {}) {
-
         this._url = url;
 
         let {
