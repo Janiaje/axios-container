@@ -38,7 +38,7 @@ class AxiosContainer {
      */
     createRequest(requestId, requestParameters) {
         return new Promise((resolve, reject) => {
-            if (this._noCache && this._isDataAcquired(requestId)) {
+            if (!this._noCache && this._isDataAcquired(requestId)) {
                 resolve(this._getAcquiredData(requestId));
             }
 
