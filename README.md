@@ -43,7 +43,7 @@ axiosContainer.createRequest('b_id', {
 
 /*
 |--------------------------------------------------------------------------
-| Response should be the following for the request above
+| Response should be the following for the requests above
 |--------------------------------------------------------------------------
 |
 | {
