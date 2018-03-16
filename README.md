@@ -118,7 +118,6 @@ let axiosContainer = new AxiosContainer('/some/url', {
     */
     axiosConfig: {},
     
-    
     /*
     |--------------------------------------------------------------------------
     | noCache
