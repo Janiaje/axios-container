@@ -23,6 +23,7 @@ class AxiosContainer {
 
         this._callbackContainer = [];
         this._requestContainer = {};
+        this._response = null;
         this._responseContainer = {};
         this._axiosInterval = null;
         this._axiosError = null;
@@ -129,7 +130,12 @@ class AxiosContainer {
      * @private
      */
     _getAcquiredData(requestId) {
-        return this._responseContainer[requestId];
+        // Clone response
+        let response = Object.assign({}, this._response);
+
+        response.data = this._responseContainer[requestId];
+
+        return response;
     }
 
     /**
@@ -207,6 +213,7 @@ class AxiosContainer {
         }
 
         request.then((response) => {
+            this._response = response;
             this._responseContainer = Object.assign(this._responseContainer, response.data);
             this._requestContainer = {};
         }).catch((error) => {
