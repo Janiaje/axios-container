@@ -1,11 +1,16 @@
 # Installing
 
-Install from NPM
+Using npm:
 ```bash
 $ npm install axios-container --save
 ```
 
-Import the package
+Using cdn:
+```html
+<script src="https://unpkg.com/axios-container"></script>
+```
+
+Import the package (after one of the options mentioned above):
 ```javascript
 import AxiosContainer from 'axios-container';
 window.AxiosContainer = AxiosContainer;
